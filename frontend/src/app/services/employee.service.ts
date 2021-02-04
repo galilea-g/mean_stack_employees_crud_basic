@@ -4,10 +4,11 @@ import { Employee } from '../models/employee';
 
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
+
 export class  EmployeeService{
-  URL_API = 'http://localhost:3000/api/employees';
+  /*URL_API = 'http://localhost:3000/api/employees';
   
   public selectedEmployee: Employee = {
     name: '',
@@ -15,9 +16,17 @@ export class  EmployeeService{
     office: '',
     salary: 0
   };
-  employees : Employee[];
+  employees : Employee[];*/
 
-  constructor( public http: HttpClient) { }
+  selectedEmployee: Employee;
+  employees: Employee[];
+  readonly URL_API = "http://localhost:3000/api/employees";
+
+  //constructor( public http: HttpClient) { }
+
+  constructor(public http: HttpClient) {
+    this.selectedEmployee = new Employee();
+  }
 
   getEmployees(){ 
     return this.http.get<Employee[]>(this.URL_API);
